@@ -291,24 +291,81 @@ container {
   width: 10vw;
   height: 10vw;
   position: absolute;
-  top: 1vw;
+  top: 10vw;
   right: 2vw
 }
 
-.add {
-  font-size: 1vw;
-  width: 7vw;
-  height: 10vw;
-  position: absolute;
-  top: 14vw;
-  right: 2vw
-}
 
 .search{
   font-size: 1vw;
   width: 12vw;
   height: 10vw;
   position: absolute;
-  top: 6vw;
+  top: 20vw;
   right: 2vw
+}
+
+.photos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly
+}
+
+/* hhh */
+div {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.add button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f5f5f5;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add,.update{
+  position: absolute;
+  top: 10vh;
+  right: 35vw;
+  width: 30vw;
+  height: 50vh;
+  background-color: #e14e4e;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.add,.update input{
+  width: 20vw;
+  display: block;
+  margin: auto;
+}
+
+.add,.update button{
+  margin: 1vw;
+}
+
+.addButton{
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+}
+
+.post{
+  display: inline-block;
+  width: 20vw;
+  height: 30vh;
+  margin: 2vw;
 }

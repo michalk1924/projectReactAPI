@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add } from '../Tools'
+import { fetchAllData, add, deleteItem, updateItem } from '../Tools'
 
 function Todos() {
 
@@ -15,7 +15,7 @@ function Todos() {
 
 
   useEffect(() => {
-    fetchAllData('todos', id, setTodos, setAllTodos)
+    fetchAllData('todos','userId', id, setTodos, setAllTodos)
   }, [])
 
   const selectSearchOptions = {
@@ -59,42 +59,16 @@ function Todos() {
       title: newTodoTitle,
       completed: false
     }
-    add("todos", id, newTodo,setAllTodos, setAddNewTodo)
+    add("todos",'userId', id, newTodo,setAllTodos, setAddNewTodo)
 }
 
-const changeTodo = (todo, type) => {
-  async function putTodo() {
-    debugger
-    const updateTodo = {
-      id: todo.id,
-      userId: todo.userId,
-      title: type == 'title' ? todo.title : todo.title,
-      completed: type == 'completed' ? !todo.completed : todo.completed
-    }
-    fetch(`http://localhost:3000/todos/${todo.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updateTodo),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then(setAllTodos((prevAllTodos) => [...prevAllTodos].map(t => t.id == todo.id ? updateTodo : t)))
-  }
-  putTodo()
+const changeTodo = (todo) => {
+  todo.completed=!todo.completed
+   updateItem('todos',todo, setAllTodos )
 }
 
 const deleteTodo = (todoId) => {
-  async function innerDelete() {
-    debugger
-    fetch(`http://localhost:3000/todos/${todoId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then(setAllTodos((prevAllTodos) => [...prevAllTodos].filter(t => t.id != todoId)))
-  }
-  innerDelete()
+deleteItem("todos",todoId, setAllTodos)
 }
 
 return (
@@ -138,16 +112,14 @@ return (
 
       <br /> <input type='search' id='search' onChange={handleSearchChange} />
     </div>
-    <div className='add'>
-      <button id='addTodos' onClick={() => setAddNewTodo(true)} >add new todo</button>
-      {addNewTodo && <div>
-        <button onClick={() => setAddNewTodo(false)}>❌</button>
+      <button id='addTodo' className='addButton' onClick={() => setAddNewTodo(true)} >add new todo</button>
+      {addNewTodo && <div className='add'>
+        <button onClick={() => setAddNewTodo(false)}>❌</button><br/>
         <label for='addNewTodo'>enter the title of the todo</label>
         <input type='text' name='addNewTodo' onChange={(e) => setNewTodoTitle(e.target.value)} />
         <button onClick={addTodo}>send</button>
       </div>
       }
-    </div>
   </div>
 )
 }

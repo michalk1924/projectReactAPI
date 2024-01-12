@@ -13,7 +13,7 @@ function Albums() {
     const [newAlbumTitle, setNewAlbumTitle] = useState('')
 
     useEffect(() => {
-        fetchAllData('albums', id, setAlbums, setAllAlbums)
+        fetchAllData('albums','userId', id, setAlbums, setAllAlbums)
     }, [])
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function Albums() {
             userId: id,
             title: newAlbumTitle
         }
-        add("albums", id, newAlbum, setAllAlbums, setAddNewAlbum)
+        add("albums",'userId', id, newAlbum, setAllAlbums, setAddNewAlbum)
     }
 
 
@@ -52,7 +52,7 @@ function Albums() {
             {!allAlbums && <h1>loading...</h1>}
             {allAlbums && <div> <h1>albums</h1>
                 {albums.map(album => {
-                    return <Link to={`./${album.id}`} key={album.id}><div className='album'>
+                    return <Link to={`./${album.id}/photos`} key={album.id}><div className='album'>
                         <strong> id: </strong>{album.id}
                         <strong>   title: </strong>{album.title}
                     </div>
@@ -72,11 +72,11 @@ function Albums() {
 
                 <br /> <input type='search' id='search' onChange={handleSearchChange} />
             </div>
-            <div className='add'>
-                <button id='addAlbums' onClick={() => setAddNewAlbum(true)} >add new album</button>
-                {addNewAlbum && <div>
-                    <button onClick={() => setAddNewAlbum(false)}>❌</button>
-                    <label for='addNewAlbum'></label>
+            <div className='addContinar'>
+                <button id='addAlbums' className='addButton' onClick={() => setAddNewAlbum(true)} >add new album</button>
+                {addNewAlbum && <div className='add'>
+                    <button onClick={() => setAddNewAlbum(false)}>❌</button><br/>
+                    <label for='addNewAlbum'>enter the title of the alnum</label>
                     <input type='text' name='addNewAlbum' onChange={(e) => setNewAlbumTitle(e.target.value)} />
                     <button onClick={addAlbum}>send</button>
                 </div>

@@ -30,10 +30,8 @@ function UserInformation({ user }) {
     const [userData, setUserData] = useState(UserInformation)
 
     const handleChange = (e) => {
-        debugger
         const { name, value } = e.target;
         const spalitName = name.split('.')
-        console.log(spalitName);
         if (spalitName.length > 1) {
             setUserData((prevUserData) => ({
                 ...prevUserData,
