@@ -25,7 +25,7 @@ function LogIn() {
             localStorage.setItem("currentUser", JSON.stringify(formData.userName))
             fetch(`http://localhost:3000/users?username=${formData.userName}`)
                 .then((response) => response.json())
-                .then((data) =>navigate(`/users/${data[0].id}/`, { state: data[0] }) )
+                .then((data) => navigate(`/users/${data[0].id}/home`, { state: data[0] }))
         }
     }
 

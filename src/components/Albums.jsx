@@ -13,7 +13,7 @@ function Albums() {
     const [newAlbumTitle, setNewAlbumTitle] = useState('')
 
     useEffect(() => {
-        fetchAllData('albums','userId', id, setAlbums, setAllAlbums)
+        fetchAllData('albums', 'userId', id, setAlbums, setAllAlbums)
     }, [])
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function Albums() {
             userId: id,
             title: newAlbumTitle
         }
-        add("albums",'userId', id, newAlbum, setAllAlbums, setAddNewAlbum)
+        add("albums", 'userId', id, newAlbum, setAllAlbums, setAddNewAlbum)
     }
 
 
@@ -75,7 +75,7 @@ function Albums() {
             <div className='addContinar'>
                 <button id='addAlbums' className='addButton' onClick={() => setAddNewAlbum(true)} >add new album</button>
                 {addNewAlbum && <div className='add'>
-                    <button onClick={() => setAddNewAlbum(false)}>❌</button><br/>
+                    <button onClick={() => setAddNewAlbum(false)}>❌</button><br />
                     <label for='addNewAlbum'>enter the title of the alnum</label>
                     <input type='text' name='addNewAlbum' onChange={(e) => setNewAlbumTitle(e.target.value)} />
                     <button onClick={addAlbum}>send</button>

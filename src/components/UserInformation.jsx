@@ -58,9 +58,9 @@ function UserInformation({ user }) {
         })
             .then(fetch(`http://localhost:3000/users?username=${userData.username}`)
                 .then((response) => response.json())
-                .then((data) =>navigate(`/users/${data[0].id}/`, { state: data[0] }) ))
+                .then((data) => navigate(`/users/${data[0].id}/home`, { state: data[0] })))
 
-        
+
     }
 
     return (

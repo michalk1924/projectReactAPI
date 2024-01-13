@@ -1,5 +1,5 @@
 
-export async function fetchAllData(type,typeId, id, set, setAll) {
+export async function fetchAllData(type, typeId, id, set, setAll) {
   const url = `http://localhost:3000/${type}/?${typeId}=${id}`
   const response = await fetch(url)
   if (response.ok) {
@@ -15,7 +15,7 @@ export async function fetchAllData(type,typeId, id, set, setAll) {
   }
 }
 
-export async function add(type,typeId, id, newItem, setAll, setAddNew) {
+export async function add(type, typeId, id, newItem, setAll, setAddNew) {
   async function fectchData() {
     const url = `http://localhost:3000/${type}/?${typeId}=${id}`
     const response = await fetch(url)
@@ -48,15 +48,14 @@ export async function deleteItem(type, id, setAll) {
   innerDelete()
 }
 
-export async function updateItem(type, item , setAll)
-{
+export async function updateItem(type, item, setAll) {
   debugger
-    fetch(`http://localhost:3000/${type}/${item.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(item),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then(setAll((prevAll) => [...prevAll].map(i => i.id == item.id ? item: i)))
+  fetch(`http://localhost:3000/${type}/${item.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then(setAll((prevAll) => [...prevAll].map(i => i.id == item.id ? item : i)))
 }

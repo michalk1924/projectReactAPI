@@ -15,7 +15,7 @@ function Todos() {
 
 
   useEffect(() => {
-    fetchAllData('todos','userId', id, setTodos, setAllTodos)
+    fetchAllData('todos', 'userId', id, setTodos, setAllTodos)
   }, [])
 
   const selectSearchOptions = {
@@ -59,69 +59,69 @@ function Todos() {
       title: newTodoTitle,
       completed: false
     }
-    add("todos",'userId', id, newTodo,setAllTodos, setAddNewTodo)
-}
+    add("todos", 'userId', id, newTodo, setAllTodos, setAddNewTodo)
+  }
 
-const changeTodo = (todo) => {
-  todo.completed=!todo.completed
-   updateItem('todos',todo, setAllTodos )
-}
+  const changeTodo = (todo) => {
+    todo.completed = !todo.completed
+    updateItem('todos', todo, setAllTodos)
+  }
 
-const deleteTodo = (todoId) => {
-deleteItem("todos",todoId, setAllTodos)
-}
+  const deleteTodo = (todoId) => {
+    deleteItem("todos", todoId, setAllTodos)
+  }
 
-return (
-  <div>
-    {!allTodos && <h1>loading...</h1>}
-    {allTodos && <div> <h1>todos</h1>
-      {todos.map(todo => {
-        return <div className='todo' key={todo.id}>
-          <input key={todo.id} type="checkbox" id='completed' name='completed' value='completed' checked={todo.completed}
-            onChange={() => changeTodo(todo, 'completed')} />
-          <strong> id: </strong>{todo.id}
-          <strong>   title: </strong>{todo.title}
-          {/* <label for='completed'>completed</label> */}
-          <button onClick={() => deleteTodo(todo.id)}>🗑️</button>
-        </div>
-      })}
-    </div>}
-    <div className='selectSort' >
-      <select name="sort" id="sort" onChange={handleSelectChange}>
-        <option value="serial">serial</option>
-        <option value="execution">execution</option>
-        <option value="alphabetical">alphabetical</option>
-        <option value="random">random</option>
-      </select>
-    </div>
-    <div className='search'>
-      <label><input
-        type="radio" value="id"
-        checked={selectedSearchOption === "id"}
-        onChange={handleSearchOptionChange} />id</label>
+  return (
+    <div>
+      {!allTodos && <h1>loading...</h1>}
+      {allTodos && <div> <h1>todos</h1>
+        {todos.map(todo => {
+          return <div className='todo' key={todo.id}>
+            <input key={todo.id} type="checkbox" id='completed' name='completed' value='completed' checked={todo.completed}
+              onChange={() => changeTodo(todo, 'completed')} />
+            <strong> id: </strong>{todo.id}
+            <strong>   title: </strong>{todo.title}
+            {/* <label for='completed'>completed</label> */}
+            <button onClick={() => deleteTodo(todo.id)}>🗑️</button>
+          </div>
+        })}
+      </div>}
+      <div className='selectSort' >
+        <select name="sort" id="sort" onChange={handleSelectChange}>
+          <option value="serial">serial</option>
+          <option value="execution">execution</option>
+          <option value="alphabetical">alphabetical</option>
+          <option value="random">random</option>
+        </select>
+      </div>
+      <div className='search'>
+        <label><input
+          type="radio" value="id"
+          checked={selectedSearchOption === "id"}
+          onChange={handleSearchOptionChange} />id</label>
 
-      <label><input
-        type="radio" value="title"
-        checked={selectedSearchOption === "title"}
-        onChange={handleSearchOptionChange} />title</label>
+        <label><input
+          type="radio" value="title"
+          checked={selectedSearchOption === "title"}
+          onChange={handleSearchOptionChange} />title</label>
 
-      <label><input
-        type="radio" value="completed"
-        checked={selectedSearchOption === "completed"}
-        onChange={handleSearchOptionChange} />completed</label>
+        <label><input
+          type="radio" value="completed"
+          checked={selectedSearchOption === "completed"}
+          onChange={handleSearchOptionChange} />completed</label>
 
-      <br /> <input type='search' id='search' onChange={handleSearchChange} />
-    </div>
+        <br /> <input type='search' id='search' onChange={handleSearchChange} />
+      </div>
       <button id='addTodo' className='addButton' onClick={() => setAddNewTodo(true)} >add new todo</button>
       {addNewTodo && <div className='add'>
-        <button onClick={() => setAddNewTodo(false)}>❌</button><br/>
+        <button onClick={() => setAddNewTodo(false)}>❌</button><br />
         <label for='addNewTodo'>enter the title of the todo</label>
         <input type='text' name='addNewTodo' onChange={(e) => setNewTodoTitle(e.target.value)} />
         <button onClick={addTodo}>send</button>
       </div>
       }
-  </div>
-)
+    </div>
+  )
 }
 
 export default Todos

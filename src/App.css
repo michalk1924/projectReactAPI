@@ -277,12 +277,12 @@ container {
   width: 60vw;
 }
 
-.album{
-    font-size: 1vw;
-    border: #333 solid 1px;
-    border-radius: 5px;
-    margin: 0.5vw;
-    width: 60vw;
+.album {
+  font-size: 1vw;
+  border: #333 solid 1px;
+  border-radius: 5px;
+  margin: 0.5vw;
+  width: 60vw;
 }
 
 
@@ -296,7 +296,7 @@ container {
 }
 
 
-.search{
+.search {
   font-size: 1vw;
   width: 12vw;
   height: 10vw;
@@ -305,7 +305,7 @@ container {
   right: 2vw
 }
 
-.photos{
+.photos {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly
@@ -334,7 +334,8 @@ h1 {
   cursor: pointer;
 }
 
-.add,.update{
+.add,
+.update {
   position: absolute;
   top: 10vh;
   right: 35vw;
@@ -347,23 +348,25 @@ h1 {
   border-radius: 5px;
 }
 
-.add,.update input{
+.add,
+.update input {
   width: 20vw;
   display: block;
   margin: auto;
 }
 
-.add,.update button{
+.add,
+.update button {
   margin: 1vw;
 }
 
-.addButton{
+.addButton {
   position: absolute;
   top: 2vh;
   right: 2vw;
 }
 
-.post{
+.post {
   display: inline-block;
   width: 20vw;
   height: 30vh;

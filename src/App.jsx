@@ -14,7 +14,6 @@ import Album from './components/Album';
 import PostComments from './components/PostComments';
 
 function App() {
-//s?_start=0&_limit=10
   return (
     <>
       <BrowserRouter>
@@ -24,7 +23,7 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='users/:id/' element={<Navigate to='home' />} />
           <Route path={`users/:id/`} element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route path='home' element={<Home />} />
             <Route path={`todos`} element={<Todos />} />
             <Route path={`albums`} element={<Albums />} />
             <Route path={`albums/:albumId/photos`} element={<Album />} />

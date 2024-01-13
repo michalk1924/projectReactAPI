@@ -14,7 +14,7 @@ function Album() {
     const [noPhotos, setNoPhotos] = useState(false)
     const [addNewPhoto, setAddNewPhoto] = useState(false)
     const [newPhotoData, setNewPhotoData] = useState({})
-    
+
 
     async function fetchPhotos() {
         const url = `http://localhost:3000/photos/?albumId=${albumId}&_start=${start}&_limit=${limit}`
@@ -81,20 +81,20 @@ function Album() {
             {noPhotos && <h1>you dont have phots in the album!<br /> let's start!</h1>}
             {albumPhotos.length > 0 &&
                 <div className='photos'>
-                    {albumPhotos.map(photo => <Photo photo={photo} setAlbumPhotos={setAlbumPhotos} />) }
+                    {albumPhotos.map(photo => <Photo photo={photo} setAlbumPhotos={setAlbumPhotos} />)}
                 </div>}
             {thereMorePhotos && <button onClick={fetchPhotos}>⏬</button>}
-                <button id='addPhotos' className='addButton' onClick={() => setAddNewPhoto(true)} >add new Photo</button>
-                {addNewPhoto &&
-                    <form className='add' onSubmit={addPhoto}>
-                        <button onClick={() => setAddNewPhoto(false)}>❌</button><br/>
-                        <label for='title'>enter the title of the Photo</label>
-                        <input required value={newPhotoData.title} type='text' name='title' onChange={handleChange} />
-                        <label for='url'>enter the url of the Photo</label>
-                        <input required value={newPhotoData.url} type='text' name='url' onChange={handleChange} />
-                        <button type='submit'>send</button>
-                    </form>
-                }
+            <button id='addPhotos' className='addButton' onClick={() => setAddNewPhoto(true)} >add new Photo</button>
+            {addNewPhoto &&
+                <form className='add' onSubmit={addPhoto}>
+                    <button onClick={() => setAddNewPhoto(false)}>❌</button><br />
+                    <label for='title'>enter the title of the Photo</label>
+                    <input required value={newPhotoData.title} type='text' name='title' onChange={handleChange} />
+                    <label for='url'>enter the url of the Photo</label>
+                    <input required value={newPhotoData.url} type='text' name='url' onChange={handleChange} />
+                    <button type='submit'>send</button>
+                </form>
+            }
         </div>
     )
 }

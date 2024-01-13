@@ -38,24 +38,24 @@ function Posts() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewPostData(prevNewPostData => ({ ...prevNewPostData, [name]: value }))
-}
+  }
 
-const addPost = () => {
+  const addPost = () => {
     const newPost = {
-        userId: id,
-        title: newPostData.title,
-        body: newPostData.body
+      userId: id,
+      title: newPostData.title,
+      body: newPostData.body
     }
-  add('posts', 'userId',id,newPost,setAllPosts,setAddNewPost)
-  .then(setNewPostData({}))
-}
+    add('posts', 'userId', id, newPost, setAllPosts, setAddNewPost)
+      .then(setNewPostData({}))
+  }
 
   return (
     <div>
       {!allPosts && <h1>loading...</h1>}
       {allPosts && <div> <h1>posts</h1>
         {posts.map(post => {
-          return <Post post={post} key={post.id} setAllPosts={setAllPosts}  />
+          return <Post post={post} key={post.id} setAllPosts={setAllPosts} />
         })}
       </div>}
       <button id='addPosts' className='addButton' onClick={() => setAddNewPost(true)} >add new Post</button>
@@ -68,19 +68,19 @@ const addPost = () => {
           <input required value={newPostData.body} type='text' name='body' onChange={handleChange} />
           <button type='submit'>send</button>
         </form>}
-        <div className='search'>
-      <label><input
-        type="radio" value="id"
-        checked={selectedSearchOption === "id"}
-        onChange={handleSearchOptionChange} />id</label>
+      <div className='search'>
+        <label><input
+          type="radio" value="id"
+          checked={selectedSearchOption === "id"}
+          onChange={handleSearchOptionChange} />id</label>
 
-      <label><input
-        type="radio" value="title"
-        checked={selectedSearchOption === "title"}
-        onChange={handleSearchOptionChange} />title</label>
+        <label><input
+          type="radio" value="title"
+          checked={selectedSearchOption === "title"}
+          onChange={handleSearchOptionChange} />title</label>
 
-      <br /> <input type='search' id='search' onChange={handleSearchChange} />
-    </div>
+        <br /> <input type='search' id='search' onChange={handleSearchChange} />
+      </div>
     </div>
   )
 }
