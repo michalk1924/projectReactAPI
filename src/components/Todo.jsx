@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import UpdateTodo from './UpdateTodo'
-import { deleteItem, updateItem } from '../../Tools'
+import { deleteItem, updateItem } from '../Tools'
 
 function Todo({ todo, setAllTodos }) {
 

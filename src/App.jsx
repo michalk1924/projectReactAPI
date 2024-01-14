@@ -4,7 +4,7 @@ import './App.css'
 import LogIn from './components/LogIn';
 import Register from './components/Register'
 import Home from './components/Home'
-import Todos from './components/Todo/Todos';
+import Todos from './components/Todos';
 import ErrorPage from './components/ErrorPage';
 import Layout from './components/Layout';
 import Albums from './components/Albums';
