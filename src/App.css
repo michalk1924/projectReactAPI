@@ -255,7 +255,7 @@ container {
   height: 80vh;
   left: 35vw;
   width: 30vw;
-  background-color: #e14e4e;
+  background-color: #e87878;
   border-radius: 1vw;
   text-align: left;
   font-size: 1.1vw;
@@ -353,7 +353,7 @@ container {
 /* hhh */
 div {
   text-align: center;
-  margin-top: 20px;
+  /* margin-top: -20px; */
 }
 
 h1 {
