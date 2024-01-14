@@ -50,7 +50,8 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: #f18282;
+  border-color: #841111;
 }
 
 /* button:focus,

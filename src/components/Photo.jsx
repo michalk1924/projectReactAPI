@@ -11,8 +11,9 @@ function Photo({ photo, setAlbumPhotos }) {
     }
 
     return (
-        <div style={{ backgroundImageUrl: photo.thumbnailUrl }}>
+        <div style={{ backgroundImageSrc: photo.thumbnailUrl }} className='photo'>
             <img src={photo.thumbnailUrl} key={photo.id} ></img>
+            <p>{photo.title}</p><br/>
             <button onClick={deletePhoto}>🗑️</button>
             <button onClick={() => setUpdatePhotoDisplay(true)}>✏️</button>
             {updatePhotoDidplay && <UpdatePhoto photo={photo} setAlbumPhotos={setAlbumPhotos}

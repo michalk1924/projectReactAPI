@@ -101,7 +101,8 @@ button {
 }
 
 body {
-  background-image: url('../public/backgroundImage.jpg');
+  /* background-image: url('../public/backgroundImage.jpg'); */
+  background-color: #e9d6d6;
   background-size: cover;
 }
 
@@ -277,38 +278,73 @@ container {
   width: 60vw;
 }
 
-.album {
-  font-size: 1vw;
-  border: #333 solid 1px;
-  border-radius: 5px;
-  margin: 0.5vw;
-  width: 60vw;
+.albums{
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 4vw;
+  /* margin: 0;
+  padding: auto; */
 }
 
+.album {
+  font-size: 1vw;
+  border: #a95454 solid 3px;
+  border-radius: 5px;
+  margin: 0.5vw;
+  width: 20vw;
+  height: 50vh;
+  background-color: #edb5b5;
+  padding: 0;
+}
+
+.album p{
+  color: #272121;
+  font-size: 2vw;
+  padding: auto;
+}
 
 .selectSort {
   font-size: 1vw;
   width: 10vw;
   height: 10vw;
   position: absolute;
-  top: 10vw;
-  right: 2vw
+  top: 8vw;
+  right: 1.5vw
 }
 
 
 .search {
   font-size: 1vw;
   width: 12vw;
-  height: 10vw;
+  height: 4vw;
   position: absolute;
-  top: 20vw;
-  right: 2vw
+  top: 5vw;
+  right: 0.8vw;
+  margin: 0;
+  padding: 0;
 }
 
 .photos {
+  width: 90vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly
+}
+
+.photo{
+  width: 25%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.photo p{
+  width: 10vw;
+  display: flex;
+  text-align: center;
+  margin: auto;
+  font-weight: bold;
 }
 
 /* hhh */
@@ -369,6 +405,6 @@ h1 {
 .post {
   display: inline-block;
   width: 20vw;
-  height: 30vh;
-  margin: 2vw;
+  height: 50vh;
+  margin: 1vw;
 }

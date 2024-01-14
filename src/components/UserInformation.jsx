@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function UserInformation({ user }) {
@@ -47,20 +47,24 @@ function UserInformation({ user }) {
 
     };
 
-    const saveDetails = (e) => {
+    const saveDetails = async (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/users', {
+        const postResponse = await fetch('http://localhost:3000/users', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-            .then(fetch(`http://localhost:3000/users?username=${userData.username}`)
-                .then((response) => response.json())
-                .then((data) => navigate(`/users/${data[0].id}/home`, { state: data[0] })))
-
-
+        if (postResponse.ok) {
+            const getResponse = await fetch(`http://localhost:3000/users?username=${userData.username}`)
+            if (getResponse.ok) {
+                const data = await getResponse.json()
+                navigate(`/users/${await data[0].id}/home`, { state: await data[0] })
+            }
+            else alert("error fetching!")
+        }
+        else alert("error fetching!")
     }
 
     return (

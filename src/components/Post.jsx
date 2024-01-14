@@ -13,7 +13,7 @@ function Post({ post, setAllPosts }) {
     }
 
     return (
-        <div className='post' key={post.id} onClick={() => setDisplayMore(!displayMore)}>
+        <div className='post' style={displayMore ? {color: 'red'}:{}} key={post.id} onClick={() => setDisplayMore(!displayMore)}>
             <h3><strong> id: </strong>{post.id}</h3>
             <h2>{post.title}</h2>
             {displayMore && <p>{post.body}</p>}

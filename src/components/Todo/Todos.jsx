@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add, deleteItem, updateItem } from '../Tools'
+import { fetchAllData, add } from '../../Tools'
+import Todo from './Todo'
 
 function Todos() {
 
@@ -12,6 +13,7 @@ function Todos() {
   const [selectedSearchOption, setSelectedSearchOption] = useState('id')
   const [addNewTodo, setAddNewTodo] = useState(false)
   const [newTodoTitle, setNewTodoTitle] = useState('')
+  const [updateTodoDidplay, setUpdateTodoDisplay] = useState(false)
 
 
   useEffect(() => {
@@ -53,7 +55,8 @@ function Todos() {
     setSelectSort(event.target.value);
   };
 
-  const addTodo = () => {
+  const addTodo = (e) => {
+    e.preventDefault();
     const newTodo = {
       userId: id,
       title: newTodoTitle,
@@ -62,28 +65,13 @@ function Todos() {
     add("todos", 'userId', id, newTodo, setAllTodos, setAddNewTodo)
   }
 
-  const changeTodo = (todo) => {
-    todo.completed = !todo.completed
-    updateItem('todos', todo, setAllTodos)
-  }
-
-  const deleteTodo = (todoId) => {
-    deleteItem("todos", todoId, setAllTodos)
-  }
 
   return (
     <div>
       {!allTodos && <h1>loading...</h1>}
       {allTodos && <div> <h1>todos</h1>
         {todos.map(todo => {
-          return <div className='todo' key={todo.id}>
-            <input key={todo.id} type="checkbox" id='completed' name='completed' value='completed' checked={todo.completed}
-              onChange={() => changeTodo(todo, 'completed')} />
-            <strong> id: </strong>{todo.id}
-            <strong>   title: </strong>{todo.title}
-            {/* <label for='completed'>completed</label> */}
-            <button onClick={() => deleteTodo(todo.id)}>🗑️</button>
-          </div>
+          return <Todo todo={todo} setAllTodos={setAllTodos} key={todo.id} />
         })}
       </div>}
       <div className='selectSort' >

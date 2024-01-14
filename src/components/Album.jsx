@@ -31,11 +31,11 @@ function Album() {
             if (data.length < limit) {
                 setThereMorePhotos(false)
             }
-            return true
         }
         else {
             setAlbumPhotos([])
-            return false
+            setNoPhotos(true)
+            alert("error fetching!")
         }
     }
 
@@ -48,7 +48,8 @@ function Album() {
         setNewPhotoData(prevNewPhotoData => ({ ...prevNewPhotoData, [name]: value }))
     }
 
-    const addPhoto = () => {
+    const addPhoto = (e) => {
+        e.preventDefault();
         const newPhoto = {
             albumId: albumId,
             title: newPhotoData.title,
@@ -58,18 +59,23 @@ function Album() {
         async function fectchData() {
             const url = `http://localhost:3000/photos/?albumId=${albumId}&_start=0&_limit=${albumPhotos.length + 1}`
             const response = await fetch(url)
-            const data = await response.json()
-            setAlbumPhotos(await data)
+            if (response.ok) {
+                const data = await response.json()
+                setAlbumPhotos(await data)
+            }
+            else alert("error fetching!")
         }
         async function postNewPhoto() {
-            fetch(`http://localhost:3000/photos`, {
+            const response = await fetch(`http://localhost:3000/photos`, {
                 method: 'POST',
                 body: JSON.stringify(newPhoto),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
-            }).then(setAddNewPhoto(false))
-                .then(fectchData())
+            })
+            setAddNewPhoto(false)
+            if (response.ok) fectchData()
+            else alert("error fetching!")
         }
         postNewPhoto()
     }
@@ -79,12 +85,15 @@ function Album() {
             <h1>{`album ${albumId}`}</h1>
             {albumPhotos.length == 0 && !noPhotos && <h1>loading...</h1>}
             {noPhotos && <h1>you dont have phots in the album!<br /> let's start!</h1>}
+
             {albumPhotos.length > 0 &&
                 <div className='photos'>
-                    {albumPhotos.map(photo => <Photo photo={photo} setAlbumPhotos={setAlbumPhotos} />)}
+                    {albumPhotos.map(photo => <Photo photo={photo} setAlbumPhotos={setAlbumPhotos} key={photo.id} />)}
                 </div>}
+
             {thereMorePhotos && <button onClick={fetchPhotos}>⏬</button>}
             <button id='addPhotos' className='addButton' onClick={() => setAddNewPhoto(true)} >add new Photo</button>
+            
             {addNewPhoto &&
                 <form className='add' onSubmit={addPhoto}>
                     <button onClick={() => setAddNewPhoto(false)}>❌</button><br />

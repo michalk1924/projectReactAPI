@@ -6,12 +6,11 @@ export async function fetchAllData(type, typeId, id, set, setAll) {
     const data = await response.json()
     setAll && setAll(await data)
     set(await data)
-    return true
   }
   else {
     setAll && setAll([])
     set([])
-    return false
+    alert("error fetching!").then(setAddNew(false))
   }
 }
 
@@ -23,39 +22,39 @@ export async function add(type, typeId, id, newItem, setAll, setAddNew) {
     setAll(await data)
   }
   async function postNew() {
-    fetch(`http://localhost:3000/${type}`, {
+    const response = await fetch(`http://localhost:3000/${type}`, {
       method: 'POST',
       body: JSON.stringify(newItem),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-    }).then(setAddNew(false))
-      .then(fectchData())
+    })
+    setAddNew(false)
+    if (response.ok) fectchData()
+    else alert("error fetching!")
   }
   postNew()
 }
 
 export async function deleteItem(type, id, setAll) {
-  async function innerDelete() {
-    fetch(`http://localhost:3000/${type}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then(setAll((prevAll) => [...prevAll].filter(t => t.id != id)))
-  }
-  innerDelete()
+  const response = await fetch(`http://localhost:3000/${type}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+  if (response.ok) setAll((prevAll) => [...prevAll].filter(t => t.id != id))
+  else alert("error fetching!")
 }
 
 export async function updateItem(type, item, setAll) {
-  debugger
-  fetch(`http://localhost:3000/${type}/${item.id}`, {
+  const response = await fetch(`http://localhost:3000/${type}/${item.id}`, {
     method: 'PUT',
     body: JSON.stringify(item),
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
   })
-    .then(setAll((prevAll) => [...prevAll].map(i => i.id == item.id ? item : i)))
+  if (response.ok) setAll((prevAll) => [...prevAll].map(i => i.id == item.id ? item : i))
+  else alert("error fetching!")
 }

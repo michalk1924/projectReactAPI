@@ -11,8 +11,6 @@ function Comment({ comment, setComments }) {
 
     const [updateCommentDidplay, setUpdateCommentDisplay] = useState(false)
 
-    debugger
-
     const deleteComment = () => {
         deleteItem("comments", comment.id, setComments)
     }
@@ -24,10 +22,10 @@ function Comment({ comment, setComments }) {
             <h2>{`name: ${comment.name}`}</h2>
             <h2>{`email: ${comment.email}`}</h2>
             <p>{comment.body}</p>
-            {user.email == comment.email &&
-            <div><button onClick={deleteComment}>🗑️</button>
-            <button onClick={() => setUpdateCommentDisplay(true)}>✏️</button>
-            </div>}
+            {user?.email == comment.email &&
+                <div><button onClick={deleteComment}>🗑️</button>
+                    <button onClick={() => setUpdateCommentDisplay(true)}>✏️</button>
+                </div>}
             {updateCommentDidplay && <UpdateComment comment={comment} setComments={setComments}
                 setUpdateCommentDisplay={setUpdateCommentDisplay} />}
         </div>

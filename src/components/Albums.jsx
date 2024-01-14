@@ -50,11 +50,12 @@ function Albums() {
     return (
         <div>
             {!allAlbums && <h1>loading...</h1>}
-            {allAlbums && <div> <h1>albums</h1>
+            {allAlbums && <h1>albums</h1>}
+            {allAlbums && <div className='albums'>
                 {albums.map(album => {
                     return <Link to={`./${album.id}/photos`} key={album.id}><div className='album'>
-                        <strong> id: </strong>{album.id}
-                        <strong>   title: </strong>{album.title}
+                        <p> <strong> id: </strong>{album.id}<br /><br />
+                            {album.title}</p>
                     </div>
                     </Link>
                 })}

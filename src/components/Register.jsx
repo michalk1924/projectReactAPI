@@ -21,18 +21,21 @@ function Register() {
         e.preventDefault();
         const url = `http://localhost:3000/users/?username=${formData.userName}`
         const response = await fetch(url)
-        const data = await response.json()
-        const user = data[0]
-        if (await user != null) {
-            setWorngExist(true)
+        if (response.ok) {
+            const data = await response.json()
+            const user = data[0]
+            if (await user != null) {
+                setWorngExist(true)
+            }
+            else if (formData.password != formData.verifyPassword) {
+                setWorngPassword(true)
+            }
+            else {
+                localStorage.setItem("currentUser", JSON.stringify(formData.userName))
+                setSignUp(true)
+            }
         }
-        else if (formData.password != formData.verifyPassword) {
-            setWorngPassword(true)
-        }
-        else {
-            localStorage.setItem("currentUser", JSON.stringify(formData.userName))
-            setSignUp(true)
-        }
+        else alert("error fetching! try later!")
     }
 
     return (

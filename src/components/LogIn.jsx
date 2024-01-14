@@ -13,20 +13,21 @@ function LogIn() {
     };
 
     const saveLogIn = async (e) => {
-        debugger;
         e.preventDefault();
         const response = await fetch(`http://localhost:3000/users/?username=${formData.userName}`)
-        const data = await response.json()
-        const user = await data[0]
-        if (user == null || user.website != formData.password) {
-            setWorng(true);
+        if(response.ok)
+        {
+            const data = await response.json()
+            const user = await data[0]
+            if (user == null || user.website != formData.password) {
+                setWorng(true);
+            }
+            else {
+                localStorage.setItem("currentUser", JSON.stringify(formData.userName))
+                 navigate(`/users/${data[0].id}/home`, { state: user })
+            }
         }
-        else {
-            localStorage.setItem("currentUser", JSON.stringify(formData.userName))
-            fetch(`http://localhost:3000/users?username=${formData.userName}`)
-                .then((response) => response.json())
-                .then((data) => navigate(`/users/${data[0].id}/home`, { state: data[0] }))
-        }
+        else alert("error fetching! try later!")
     }
 
     return (
