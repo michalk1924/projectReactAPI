@@ -27,7 +27,13 @@ function Todos() {
   }
 
   const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
+    const { value } = event.target;
+  
+    if (selectedSearchOption === 'completed') {
+      setSearchValue(value === 'V' ? '1' : value === 'X' ? '0' : '');
+    } else {
+      setSearchValue(value);
+    }
   };
 
   useEffect(() => {
@@ -37,6 +43,14 @@ function Todos() {
   const handleSearchOptionChange = (event) => {
     setSelectedSearchOption(event.target.value);
   };
+
+  useEffect(() => {
+    setTodos(
+      searchValue
+        ? [...allTodos].filter(selectSearchOptions[selectedSearchOption])
+        : allTodos
+    );
+  }, [selectedSearchOption, searchValue, allTodos]);
 
   const selectSortOptions = {
     serial: (a, b) => a.id - b.id,
@@ -82,24 +96,65 @@ function Todos() {
           <option value="random">random</option>
         </select>
       </div>
-      <div className='search'>
-        <label><input
-          type="radio" value="id"
-          checked={selectedSearchOption === "id"}
-          onChange={handleSearchOptionChange} />id</label>
 
-        <label><input
-          type="radio" value="title"
-          checked={selectedSearchOption === "title"}
-          onChange={handleSearchOptionChange} />title</label>
+<div className='search'>
+  <label>
+    <input
+      type="radio" value="id"
+      checked={selectedSearchOption === "id"}
+      onChange={handleSearchOptionChange}
+    />
+    id
+  </label>
 
-        <label><input
-          type="radio" value="completed"
-          checked={selectedSearchOption === "completed"}
-          onChange={handleSearchOptionChange} />completed</label>
+  <label>
+    <input
+      type="radio" value="title"
+      checked={selectedSearchOption === "title"}
+      onChange={handleSearchOptionChange}
+    />
+    title
+  </label>
 
-        <br /> <input type='search' id='search' onChange={handleSearchChange} />
-      </div>
+  {selectedSearchOption !== "completed" && (
+    <label>
+      <input
+        type="radio" value="completed"
+        checked={selectedSearchOption === "completed"}
+        onChange={handleSearchOptionChange}
+      />
+      completed
+    </label>
+  )}
+
+  {selectedSearchOption === "completed" && (
+    <div>
+      <label>
+        <input
+          type="radio" value="V"
+          checked={searchValue === "1"}
+          onChange={handleSearchChange}
+        />
+        <span role="img" aria-label="V">&#10003;</span>
+      </label>
+
+      <label>
+        <input
+          type="radio" value="X"
+          checked={searchValue === "0"}
+          onChange={handleSearchChange}
+        />
+        <span role="img" aria-label="X">&#10007;</span>
+      </label>
+    </div>
+  )}
+
+  <br /> 
+  {selectedSearchOption !== "completed" && (
+    <input type='search' id='search' onChange={handleSearchChange} />
+  )}
+</div>
+
       <button id='addTodo' className='addButton' onClick={() => setAddNewTodo(true)} >add new todo</button>
       {addNewTodo && <div className='add'>
         <button onClick={() => setAddNewTodo(false)}>❌</button><br />
