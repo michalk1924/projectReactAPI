@@ -5,27 +5,22 @@ import UserContext from './UserContext'
 
 function Home() {
 
+  const [user, setUser] = useState(null)
   const [info, setInfo] = useState(false)
 
-  const [user, setUser] = useState(null)
-  const userName = JSON.parse(localStorage.getItem("currentUser"))
+  const { state } = useLocation()
+  const userContext = useContext(UserContext)
 
-  // const { state } = useLocation()
-  // console.log(useContext(UserContext));
-  // const user = state != null ? state : useContext(UserContext);
-  // console.log(user);
+  async function fectchData() {
+    const userName = JSON.parse(localStorage.getItem("currentUser"))
+    const url = `http://localhost:3000/users/?username=${userName}`
+    const response = await fetch(url)
+    const data = await response.json()
+    setUser(data[0])
+}
 
-  useEffect(() => {
-    async function fectchUser() {
-      const url = `http://localhost:3000/users/?username=${userName}`
-      const response = await fetch(url)
-      if (response.ok) {
-        const data = await response.json()
-        setUser(data[0])
-      }
-      else alert("error fetching!")
-    }
-    fectchUser()
+  useEffect(()=>{
+    state ? setUser(state) : userContext ? setUser(userContext) : fectchData()
   },[])
 
   const navigate = useNavigate()
