@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add} from '../Tools'
+import { fetchAllData, add } from '../../Tools'
 import Comment from './Comment'
 
 function PostComments() {

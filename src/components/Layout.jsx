@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import { useLocation, Outlet } from 'react-router-dom'
 import UserContext from './UserContext'
-import LogIn from './LogIn'
 
 function Layout() {
     const [user, setUser] = useState()

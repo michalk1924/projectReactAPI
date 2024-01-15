@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, Outlet } from 'react-router-dom'
-import { fetchAllData, add } from '../Tools'
+import { fetchAllData, add } from '../../Tools'
 
 function Albums() {
 

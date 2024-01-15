@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { updateItem } from '../Tools'
+import { updateItem } from '../../Tools'
 
 function UpdateComment({ comment, setUpdateCommentDisplay, setComments }) {
 

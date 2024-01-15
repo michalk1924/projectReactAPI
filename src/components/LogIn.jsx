@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useNavigate=} from 'react-router-dom'
 
 function LogIn() {
     const navigate = useNavigate();
@@ -15,8 +15,7 @@ function LogIn() {
     const saveLogIn = async (e) => {
         e.preventDefault();
         const response = await fetch(`http://localhost:3000/users/?username=${formData.userName}`)
-        if(response.ok)
-        {
+        if (response.ok) {
             const data = await response.json()
             const user = await data[0]
             if (user == null || user.website != formData.password) {
@@ -24,7 +23,7 @@ function LogIn() {
             }
             else {
                 localStorage.setItem("currentUser", JSON.stringify(formData.userName))
-                 navigate(`/users/${data[0].id}/home`, { state: user })
+                navigate(`/users/${data[0].id}/home`, { state: user })
             }
         }
         else alert("error fetching! try later!")

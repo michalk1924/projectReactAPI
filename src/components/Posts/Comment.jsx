@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { fetchAllData, add, deleteItem, updateItem } from '../Tools'
+import { fetchAllData, add, deleteItem, updateItem } from '../../Tools'
 import UpdateComment from './UpdateComment'
-import UserContext from './UserContext'
+import UserContext from '../UserContext'
 
 
 function Comment({ comment, setComments }) {
@@ -17,7 +17,8 @@ function Comment({ comment, setComments }) {
 
 
     return (
-        <div key={comment.id}>
+        <>
+        <div className='comment' key={comment.id}>
             <h3>{`id: ${comment.id}`}</h3>
             <h2>{`name: ${comment.name}`}</h2>
             <h2>{`email: ${comment.email}`}</h2>
@@ -26,9 +27,10 @@ function Comment({ comment, setComments }) {
                 <div><button onClick={deleteComment}>🗑️</button>
                     <button onClick={() => setUpdateCommentDisplay(true)}>✏️</button>
                 </div>}
-            {updateCommentDidplay && <UpdateComment comment={comment} setComments={setComments}
-                setUpdateCommentDisplay={setUpdateCommentDisplay} />}
         </div>
+        {updateCommentDidplay && <UpdateComment comment={comment} setComments={setComments}
+                setUpdateCommentDisplay={setUpdateCommentDisplay} />}
+        </>
     )
 }
 

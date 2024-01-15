@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { updateItem } from '../Tools'
+import { updateItem } from '../../Tools'
 
 function UpdatePost({ post, setAllPosts, setUpdatePostDisplay }) {
 

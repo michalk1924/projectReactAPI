@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { useLocation, useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Info from './Info';
 import UserContext from './UserContext'
 
@@ -17,11 +17,11 @@ function Home() {
     const response = await fetch(url)
     const data = await response.json()
     setUser(data[0])
-}
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     state ? setUser(state) : userContext ? setUser(userContext) : fectchData()
-  },[])
+  }, [])
 
   const navigate = useNavigate()
 

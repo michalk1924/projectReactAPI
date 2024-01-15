@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add, deleteItem } from '../Tools'
+import { fetchAllData, add, deleteItem } from '../../Tools'
 import Photo from './Photo'
 import UpdatePhoto from './UpdatePhoto'
 

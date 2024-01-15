@@ -4,7 +4,6 @@ import '../App.css'
 import UserContext from './UserContext';
 
 function Header({ user }) {
-    // const user = useContext(UserContext);
 
     const activeStyles = {
         fontWeight: "bold",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { deleteItem } from '../Tools'
+import { deleteItem } from '../../Tools'
 import UpdatePhoto from './UpdatePhoto'
 
 function Photo({ photo, setAlbumPhotos }) {

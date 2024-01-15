@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add } from '../Tools'
+import { fetchAllData, add } from '../../Tools'
 import Todo from './Todo'
 
 function Todos() {
@@ -27,7 +27,7 @@ function Todos() {
 
   const handleSearchChange = (event) => {
     const { value } = event.target;
-  
+
     if (selectedSearchOption === 'completed') {
       setSearchValue(value === 'V' ? '1' : value === 'X' ? '0' : '');
     } else {
@@ -51,9 +51,9 @@ function Todos() {
     );
   }, [selectedSearchOption, searchValue, allTodos]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setSearchValue('')
-  },[selectedSearchOption])
+  }, [selectedSearchOption])
 
   const selectSortOptions = {
     serial: (a, b) => a.id - b.id,
@@ -100,63 +100,63 @@ function Todos() {
         </select>
       </div>
 
-<div className='search'>
-  <label>
-    <input
-      type="radio" value="id"
-      checked={selectedSearchOption === "id"}
-      onChange={handleSearchOptionChange}
-    />
-    id
-  </label>
+      <div className='search'>
+        <label>
+          <input
+            type="radio" value="id"
+            checked={selectedSearchOption === "id"}
+            onChange={handleSearchOptionChange}
+          />
+          id
+        </label>
 
-  <label>
-    <input
-      type="radio" value="title"
-      checked={selectedSearchOption === "title"}
-      onChange={handleSearchOptionChange}
-    />
-    title
-  </label>
+        <label>
+          <input
+            type="radio" value="title"
+            checked={selectedSearchOption === "title"}
+            onChange={handleSearchOptionChange}
+          />
+          title
+        </label>
 
-  {/*selectedSearchOption !== "completed" &&*/ (
-    <label>
-      <input
-        type="radio" value="completed"
-        checked={selectedSearchOption === "completed"}
-        onChange={handleSearchOptionChange}
-      />
-      completed
-    </label>
-  )}
+        {/*selectedSearchOption !== "completed" &&*/ (
+          <label>
+            <input
+              type="radio" value="completed"
+              checked={selectedSearchOption === "completed"}
+              onChange={handleSearchOptionChange}
+            />
+            completed
+          </label>
+        )}
 
-  {selectedSearchOption === "completed" && (
-    <div>
-      <label>
-        <input
-          type="radio" value="V"
-          checked={searchValue === "1"}
-          onChange={handleSearchChange}
-        />
-        <span role="img" aria-label="V">&#10003;</span>
-      </label>
+        {selectedSearchOption === "completed" && (
+          <div>
+            <label>
+              <input
+                type="radio" value="V"
+                checked={searchValue === "1"}
+                onChange={handleSearchChange}
+              />
+              <span role="img" aria-label="V">&#10003;</span>
+            </label>
 
-      <label>
-        <input
-          type="radio" value="X"
-          checked={searchValue === "0"}
-          onChange={handleSearchChange}
-        />
-        <span role="img" aria-label="X">&#10007;</span>
-      </label>
-    </div>
-  )}
+            <label>
+              <input
+                type="radio" value="X"
+                checked={searchValue === "0"}
+                onChange={handleSearchChange}
+              />
+              <span role="img" aria-label="X">&#10007;</span>
+            </label>
+          </div>
+        )}
 
-  <br /> 
-  {selectedSearchOption !== "completed" && (
-    <input type='search' id='search' value={searchValue} onChange={handleSearchChange} />
-  )}
-</div>
+        <br />
+        {selectedSearchOption !== "completed" && (
+          <input type='search' id='search' value={searchValue} onChange={handleSearchChange} />
+        )}
+      </div>
 
       <button id='addTodo' className='addButton' onClick={() => setAddNewTodo(true)} >add new todo</button>
       {addNewTodo && <div className='add'>
