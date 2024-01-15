@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchAllData, add} from '../Tools'
+import { fetchAllData, add } from '../Tools'
 import Post from './Post'
 
 function Posts() {
@@ -54,10 +54,10 @@ function Posts() {
     <div>
       {!allPosts && <h1>loading...</h1>}
       {allPosts && <div> <h1>posts</h1>
-        {posts.map(post => {
+        <div className='posts'>{posts.map(post => {
           return <Post post={post} key={post.id} setAllPosts={setAllPosts} />
         })}
-      </div>}
+        </div></div>}
       <button id='addPosts' className='addButton' onClick={() => setAddNewPost(true)} >add new Post</button>
       {addNewPost &&
         <form className='add' onSubmit={addPost}>

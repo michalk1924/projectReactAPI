@@ -406,9 +406,27 @@ h1 {
   right: 2vw;
 }
 
+.posts{
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly
+}
+
 .post {
+  background-image: url("./images/post.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: inline-block;
+  border: #272121 solid 3px;
+  border-radius: 5px;
   width: 20vw;
-  height: 50vh;
+  height: 60vh;
   margin: 1vw;
+  margin: 1vw;
+  padding:0.5vw;
+}
+
+.post button{
+  bottom: 0%;
 }

@@ -16,7 +16,10 @@ function UpdatePost({ post, setAllPosts, setUpdatePostDisplay }) {
 
     return (
         <form className={"update"} onSubmit={saveUpdate}>
-            <button onClick={() => setAddNewAlbum(false)}>❌</button><br />
+            <button onClick={(e) => {
+                setUpdatePostDisplay(false)
+                e.stopPropagation();
+            }}>❌</button><br />
             <label for='title'>enter the title of the Post</label>
             <input required value={updatePostData.title} type='text' name='title' onChange={handleChange} />
             <label for='body'>enter the body of the Post</label>

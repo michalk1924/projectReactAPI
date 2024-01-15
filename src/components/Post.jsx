@@ -10,16 +10,21 @@ function Post({ post, setAllPosts }) {
 
     const deletePost = () => {
         deleteItem("posts", post.id, setAllPosts)
+        e.stopPropagation();
     }
 
     return (
-        <div className='post' style={displayMore ? {color: 'red'}:{}} key={post.id} onClick={() => setDisplayMore(!displayMore)}>
+        <div className='post' style={displayMore ? { borderColor: 'red' } : {}} key={post.id}
+            onClick={() => setDisplayMore(!displayMore)}>
             <h3><strong> id: </strong>{post.id}</h3>
             <h2>{post.title}</h2>
             {displayMore && <p>{post.body}</p>}
             <Link to={`./${post.id}/comments`}>comments</Link>
             <button onClick={deletePost}>🗑️</button>
-            <button onClick={() => setUpdatePostDisplay(true)}>✏️</button>
+            <button onClick={(e) => {
+                setUpdatePostDisplay(true)
+                e.stopPropagation();
+            }}>✏️</button>
             {updatePostDidplay && <UpdatePost post={post} setAllPosts={setAllPosts}
                 setUpdatePostDisplay={setUpdatePostDisplay} />}
         </div>
