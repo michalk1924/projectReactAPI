@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchAllData, add } from '../../Tools'
 import Comment from './Comment'
+import UserContext from '../UserContext'
 
 function PostComments() {
+
+    const user = useContext(UserContext);
 
     const [comments, setComments] = useState([])
     const [addNewComment, setAddNewComment] = useState(false)
@@ -25,7 +28,7 @@ function PostComments() {
         const newComment = {
             postId: postId,
             name: newCommentData.name,
-            email: newCommentData.email,
+            email: user.email,
             body: newCommentData.body
         }
         add('comments', 'postId', postId, newComment, setComments, setAddNewComment)
@@ -44,8 +47,6 @@ function PostComments() {
                         <button onClick={() => setAddNewComment(false)}>❌</button><br />
                         <label for='name'>enter the name of the Comment</label>
                         <input required value={newCommentData.title} type='text' name='name' onChange={handleChange} />
-                        <label for='email'>enter the email of the Comment</label>
-                        <input required value={newCommentData.url} type='text' name='email' onChange={handleChange} />
                         <label for='body'>enter the body of the Comment</label>
                         <input required value={newCommentData.url} type='text' name='body' onChange={handleChange} />
                         <button type='submit'>send</button>
