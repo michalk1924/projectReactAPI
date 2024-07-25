@@ -17,7 +17,7 @@ This project is the client-side component of a full-stack application, developed
 
 ## Setup
    git clone https://github.com/michalk1924/projectReactAPI.git
-      ```bash
+```bash
    cd projectReactAPI
    npm install
    npm run dev
