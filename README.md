@@ -18,7 +18,7 @@ This project represents the server-side component of a full-stack application, d
 ## Setup
    ```bash
    git clone https://github.com/michalk1924/tziviMichalProjectServer.git
- ```bash
+   ```bash
    cd tziviMichalProjectServer
    npm install
    npm start
