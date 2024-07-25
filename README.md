@@ -16,7 +16,6 @@ This project represents the server-side component of a full-stack application, d
 - Data validation and error handling.
 
 ## Setup
-1. Clone the repository:
    ```bash
    git clone https://github.com/michalk1924/tziviMichalProjectServer.git
    cd tziviMichalProjectServer
