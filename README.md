@@ -1,8 +1,24 @@
-# React + Vite
+# tziviMichalProjectServer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This project represents the server-side component of a full-stack application, designed to handle backend operations for managing data and business logic. It interacts with the client-side application through RESTful APIs, facilitating smooth communication and data exchange.
 
-Currently, two official plugins are available:
+## Technologies Used
+- Node.js
+- Express
+- MongoDB (or other database technology if used)
+- JWT (for authentication)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- RESTful API endpoints for data management.
+- Integration with a database for persistent storage.
+- Authentication and authorization mechanisms.
+- Data validation and error handling.
+
+## Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/michalk1924/tziviMichalProjectServer.git
+cd tziviMichalProjectServer
+npm install
+npm start
