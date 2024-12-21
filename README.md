@@ -20,6 +20,7 @@ This project is the client-side component of a full-stack application, developed
 ```bash
    cd projectReactAPI
    npm install
+   npm run json:server
    npm run dev
 
  
