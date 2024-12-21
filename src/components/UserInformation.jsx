@@ -8,6 +8,7 @@ function UserInformation({ user }) {
     const UserInformation = {
         name: '',
         username: user.userName,
+        name: '',
         email: '',
         address: {
             street: '',
