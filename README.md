@@ -1,24 +1,25 @@
-# tziviMichalProjectServer
+# projectReactAPI
 
 ## Description
-This project represents the server-side component of a full-stack application, designed to handle backend operations for managing data and business logic. It interacts with the client-side application through RESTful APIs, facilitating smooth communication and data exchange.
+This project is the client-side component of a full-stack application, developed using React. It interfaces with the server-side application to present data and interact with users through a responsive and dynamic UI.
 
 ## Technologies Used
-- Node.js
-- Express
-- MongoDB (or other database technology if used)
-- JWT (for authentication)
+- React
+- JavaScript (ES6+)
+- HTML
+- CSS
 
 ## Features
-- RESTful API endpoints for data management.
-- Integration with a database for persistent storage.
-- Authentication and authorization mechanisms.
-- Data validation and error handling.
+- React-based user interface.
+- Integration with RESTful APIs provided by the server-side project.
+- State management and data handling.
+- User authentication and session management.
 
 ## Setup
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/michalk1924/tziviMichalProjectServer.git
-cd tziviMichalProjectServer
-npm install
-npm start
+   git clone https://github.com/michalk1924/projectReactAPI.git
+```bash
+   cd projectReactAPI
+   npm install
+   npm run dev
+
+ 
